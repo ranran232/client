@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
-  description: "Ylana's Gallery",
+  title: "Ylana's Gallery",
+  description: "Ylana Rayne's Photo Collection",
 };
 
 export default function RootLayout({
