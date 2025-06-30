@@ -1,10 +1,13 @@
 import React from 'react';
 import { Camera, ArrowRight, Sparkles } from 'lucide-react';
 import CardGrid from './Category';
+import FeaturedCarousel from './FeaturedCarousel';
+import GalleryHeader from './GalleryHeader';
 
 export default function GalleryHero() {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-rose-50 via-white to-rose-100 overflow-hidden">
+      <GalleryHeader />
       {/* Decorative Elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-32 h-32 bg-rose-300 rounded-full blur-3xl animate-pulse"></div>
@@ -24,10 +27,10 @@ export default function GalleryHero() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
         <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
           {/* Left Content */}
-          <div className="text-center lg:text-left space-y-8 mt-10 md:mt-0">
+          <div className="text-center lg:text-left space-y-8 mt-[5rem] md:mt-0">
             <div className="inline-flex items-center gap-2 bg-rose-100 text-rose-600 px-4 py-2 rounded-full text-sm font-medium">
               <Sparkles className="w-4 h-4" />
-              Curated Art Collection
+             Her World Through Our Lens
             </div>
             
             <div className="space-y-6">
@@ -43,9 +46,9 @@ export default function GalleryHero() {
                 </span>
               </h1>
               
-              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl leading-relaxed">
-                Immerse yourself in a world where creativity meets emotion. Our carefully curated collection showcases extraordinary works that speak to the soul and inspire the imagination.
-              </p>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl leading-relaxed hidden md:block">
+          Each photo and drawing in this gallery captures a piece of her growing story. From joyful snapshots to imaginative sketches, this is a place where memories live, beautifully frozen in time.
+        </p>      
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -63,44 +66,8 @@ export default function GalleryHero() {
           </div>
 
           {/* Right Content - Featured Art Preview */}
-          <div className="relative">
-            <div className="relative group">
-              {/* Main Featured Image */}
-            <div className="relative bg-gradient-to-br from-rose-200 to-rose-300 rounded-3xl p-8 shadow-2xl transform rotate-2 group-hover:rotate-0 transition-transform duration-500">
-            <div className="relative bg-[url('/anewwife_bg.png')] bg-cover bg-center bg-no-repeat rounded-2xl aspect-[3/4] shadow-inner flex items-center justify-center overflow-hidden">
-              {/* Randomly placed sparks */}
-              {[...Array(7)].map((_, i) => (
-                <Sparkles
-                  key={i}
-                  className="absolute text-rose-400 w-5 h-5"
-                  style={{
-                    top: `${Math.random() * 90}%`,
-                    left: `${Math.random() * 90}%`,
-                    transform: `rotate(${Math.random() * 360}deg)`,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
+        <FeaturedCarousel/>
 
-              {/* Floating Cards */}
-              <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl transform rotate-12 hover:rotate-6 transition-transform duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-rose-300 to-rose-400 rounded-xl"></div>
-              </div>
-              
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl transform -rotate-12 hover:-rotate-6 transition-transform duration-300">
-                <div className="w-20 h-16 bg-gradient-to-br from-rose-200 to-rose-300 rounded-xl"></div>
-              </div>
-            </div>
-
-            {/* Floating Elements */}
-            <div className="absolute top-10 right-0 animate-bounce delay-1000">
-              <div className="w-6 h-6 bg-rose-400 rounded-full shadow-lg"></div>
-            </div>
-            <div className="absolute bottom-20 left-4 animate-bounce delay-2000">
-              <div className="w-4 h-4 bg-rose-300 rounded-full shadow-lg"></div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -114,8 +81,6 @@ export default function GalleryHero() {
           ></path>
         </svg>
       </div>
-
-
       <CardGrid/>
     </div>
   );
