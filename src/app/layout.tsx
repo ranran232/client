@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ylana's Gallery",
-  description: "Ylana Rayne's Photo Collection",
+  title: "qweqwe",
+  description: "qweqwe",
 };
 
 export default function RootLayout({

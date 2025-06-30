@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react';
 import {Camera, ImageIcon, Plus, Upload,  Edit, Trash2, Eye, AlertTriangle, Edit3 } from 'lucide-react';
 import {
