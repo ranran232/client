@@ -16,7 +16,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -391,7 +390,7 @@ const handleDeleteImg= async()=>{
                       <span>Uploading...</span>
                       <span>{Math.round(uploadProgress)}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className=" w-full bg-gray-200 rounded-full h-2">
                       <div
                         className="bg-rose-500 h-2 rounded-full transition-all duration-300"
                         style={{ width: `${uploadProgress}%` }}
@@ -427,15 +426,34 @@ const handleDeleteImg= async()=>{
       {/* Body */}
       <div className="p-6">
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <div
-                key={index}
-                className="rounded-xl overflow-hidden shadow-md border border-gray-200"
-              >
-                <Skeleton className="w-full h-48" />
-              </div>
-            ))}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                 <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+         <div className="animate-pulse">
+          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
           </div>
         ) : images.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center text-gray-500">
@@ -444,14 +462,14 @@ const handleDeleteImg= async()=>{
             <p className="text-sm">Try uploading one to get started.</p>
           </div>
         ) : (
-         <div className="p-6">
+         <div>
     
       {/* Image Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {images.map((item, index) => (
           <div
             key={item._id}
-            className="relative w-full h-[300px] rounded-xl overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
+            className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
             onClick={() => openModal(index)}
           >
             <Image

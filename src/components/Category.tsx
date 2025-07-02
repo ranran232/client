@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import {Camera, ImageIcon, Plus, Upload,  Edit, Trash2, Eye, AlertTriangle, Edit3 } from 'lucide-react';
+import {Camera, ImageIcon, Plus, Upload,  Edit, Trash2, AlertTriangle, Edit3, MoveUpRight } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -27,7 +27,7 @@ const CardGrid = () => {
     const [latest, setLatest]= useState<Latest[]>([]);
     const [isNewSet, setIsNewSet]= useState(false);
     const [set, setNewSet]= useState('');
-     const [loading,setLoading]= useState(false);
+     const [loading,setLoading]= useState(true);
      const [selectedCat, setSelectedCat]= useState('');
       const [isOpen, setIsOpen] = useState(false);
      const [isDeleting, setIsDeleting] = useState(false);
@@ -54,10 +54,16 @@ const CardGrid = () => {
   }, []);
 
 const getLatest= async()=>{
-    const res= await fetch('https://expresso-plum.vercel.app/latest');
+   try{
+     const res= await fetch('https://expresso-plum.vercel.app/latest');
     const data= await res.json();
     console.log(data);
     setLatest(Array.isArray(data) ? data : []);
+   }catch(error){
+    console.log(error)
+   }finally{
+    setLoading(false);
+   }
 }
   
 useEffect(()=>{
@@ -208,80 +214,109 @@ const NoImagePlaceholder = () => (
            }
         </div>
 
-        {/* Responsive Card Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {latest.map((item, index) => (
-            <div 
-              key={index} 
-              className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
-            >
-              {/* Image Container or Placeholder */}
-              <div className="relative">
-                {item.image ? (
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.category}
-                      fill
-                      unoptimized
-                      className=" object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+           {loading ?
+           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+              <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+       <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+       <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+       <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+       <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+       <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+       <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+       <div className="animate-pulse">
+          <div className="aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+      </div>
+           </div>
+           :
+           <>
+                {/* Responsive Card Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+      {latest.map((item, index) => (
+        <div
+          key={index}
+          className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
+        >
+          {/* Image Container */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+            {item.image ? (
+              <>
+                <Image
+                  src={item.image}
+                  alt={item.category}
+                  fill
+                  unoptimized
+                  className="object-cover"
+                />
+
+                {/* Bottom Bar Without Background */}
+                <div className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-end justify-between gap-2 text-white text-sm z-10">
+                  {/* Left: Category Name + Edit */}
+                  <div className="flex items-end gap-2 font-semibold drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">
+                  <div>
+                      <span className='text-lg font-thin'>Album</span>
+                    <span className="text-3xl line-clamp-1">{item.category}</span>
                   </div>
-                ) : (
-                  <NoImagePlaceholder />
-                )}
-              </div>
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleIsEdit(item.category)}
+                        className="p-1 rounded hover:bg-white/10 transition cursor-pointer"
+                      >
+                        <Edit size={16} />
+                      </button>
+                    )}
+                  </div>
 
-              {/* Card Content */}
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4 group-hover:text-pink-600 transition-colors duration-300 line-clamp-2">
-                  {item.category}
-                </h3>
-                
-
-           {/* Action Button */}
-        {
-          isAdmin ? 
-              <div className="flex justify-center gap-1 w-full">
-          {/* Edit - Compact */}
-          <button onClick={()=>handleIsEdit(item.category)} className="cursor-pointer group flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 rounded-l-lg border border-slate-200 hover:border-blue-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-30">
-            <Edit size={16} className="transition-colors" />
-            <span className="text-sm font-medium">Edit</span>
-          </button>
-
-          {/* Delete - Compact */}
-          <button onClick={()=>handleIsDelete(item.category)} className="cursor-pointer group flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 bg-slate-100 hover:bg-red-50 text-slate-700 hover:text-red-700 border-t border-b border-slate-200 hover:border-red-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-30">
-            <Trash2 size={16} className="transition-colors" />
-               <span className="text-sm font-medium">Delete</span>
-          </button>
-
-          {/* View - Compact Primary */}
-         <Link href={`cat/${item.category}`} className="flex items-center justify-center gap-1.5 px-4 py-2.5 text-rose-300  border border-rose-300 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.01] focus:outline-none shadow-sm hover:shadow-md">
-            <Eye size={16} />
-            <span className="text-sm">View</span>
-          </Link>
+                  {/* Right: View + Delete */}
+                  <div className="flex items-center gap-2">
+                    <Link
+                      href={`cat/${item.category}`}
+                      className="p-1 rounded hover:bg-white/10 text-white transition"
+                    >
+                      <MoveUpRight size={25} />
+                    </Link>
+                      {isAdmin && (
+                      <button
+                        onClick={() => handleIsDelete(item.category)}
+                        className="cursor-pointer p-1 rounded hover:bg-white/10 text-white transition"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              !loading && <NoImagePlaceholder /> 
+            )}
+          </div>
         </div>
-        :
-        <Link href={`cat/${item.category}`} className="flex items-center justify-center gap-1.5 px-4 py-2.5 text-rose-300  border border-rose-300 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.01] focus:outline-none shadow-sm hover:shadow-md">
-            <Eye size={20} />
-            <span className="text-base">View</span>
-          </Link>
-        }
+      ))}
+    </div>
+              </>
+              }
 
-              </div>
 
-              {/* Decorative Elements */}
-              <div className="absolute -top-2 -right-2 w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-300 animate-pulse" />
-              <div className="absolute -bottom-1 -left-1 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-40 transition-opacity duration-300 animate-bounce" />
-            </div>
-          ))}
-        </div>
+      
+
+
 
         {/* Empty State Message */}
-        {latest.length === 0 && (
+        {!loading && latest.length === 0 && (
           <div className="text-center py-12 sm:py-16">
             <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 bg-gradient-to-r from-pink-100 to-rose-100 rounded-full flex items-center justify-center">
               <ImageIcon className="w-10 h-10 sm:w-12 sm:h-12 text-pink-400" />
