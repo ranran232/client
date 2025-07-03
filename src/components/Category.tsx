@@ -16,6 +16,7 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useUserStore } from '@/app/store/useUserStore';
+import FavoritesCard from './FavoritesCard';
 
 
 
@@ -163,36 +164,43 @@ const handleSaveEdit=async ()=>{
 
 
 const NoImagePlaceholder = () => (
-    <div className="relative aspect-[4/5] bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col items-center justify-center group-hover:from-pink-50 group-hover:to-rose-50 transition-all duration-500">
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-4 left-4 w-8 h-8 bg-pink-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-12 right-6 w-4 h-4 bg-rose-400 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-8 left-8 w-6 h-6 bg-purple-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-16 right-4 w-3 h-3 bg-pink-400 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
-      </div>
-      
-      {/* Main Icon */}
-      <div className="relative z-10 p-8 rounded-full bg-white/80 backdrop-blur-sm shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-        <ImageIcon className="w-12 h-12 text-gray-400 group-hover:text-pink-500 transition-colors duration-300" />
-      </div>
-      
-      {/* Upload Indicator */}
-      <div className="relative z-10 mt-6 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full shadow-sm group-hover:shadow-md transition-all duration-300">
-        <div className="flex items-center space-x-2 text-gray-500 group-hover:text-pink-600 transition-colors duration-300">
-          <Upload className="w-4 h-4" />
-          <span className="text-sm font-medium">No image yet, upload</span>
-        </div>
-      </div>
-      
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 border-2 border-dashed border-gray-200 group-hover:border-pink-300 transition-colors duration-300 rounded-t-2xl"></div>
+   <div className="relative aspect-[4/5] bg-gradient-to-br from-gray-800 to-gray-900 flex flex-col items-center justify-center transition-all duration-500 group">
+  {/* Animated Background Pattern */}
+  <div className="absolute inset-0 opacity-10">
+    <div className="absolute top-4 left-4 w-8 h-8 bg-pink-500 rounded-full animate-pulse"></div>
+    <div className="absolute top-12 right-6 w-4 h-4 bg-rose-500 rounded-full animate-bounce"></div>
+    <div
+      className="absolute bottom-8 left-8 w-6 h-6 bg-purple-500 rounded-full animate-pulse"
+      style={{ animationDelay: "1s" }}
+    ></div>
+    <div
+      className="absolute bottom-16 right-4 w-3 h-3 bg-pink-500 rounded-full animate-bounce"
+      style={{ animationDelay: "0.5s" }}
+    ></div>
+  </div>
+
+  {/* Main Icon */}
+  <div className="relative z-10 p-8 rounded-full bg-white/10 backdrop-blur-md shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+    <ImageIcon className="w-12 h-12 text-white group-hover:text-pink-400 transition-colors duration-300" />
+  </div>
+
+  {/* Upload Indicator */}
+  <div className="relative z-10 mt-6 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full shadow-sm group-hover:shadow-md transition-all duration-300">
+    <div className="flex items-center space-x-2 text-white group-hover:text-pink-400 transition-colors duration-300">
+      <Upload className="w-4 h-4" />
+      <span className="text-sm font-medium">No image yet</span>
     </div>
+  </div>
+
+  {/* Decorative Border */}
+  <div className="absolute inset-0 border-2 border-dashed border-gray-700 group-hover:border-pink-400 transition-colors duration-300 rounded-t-2xl"></div>
+</div>
+
   );
 
 
   return (
-    <div id='category' className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 py-16 px-4">
+    <div id='category' className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50 py-16 px-1 sm:px-4">
       <div className="max-w-[1600px] mx-auto">
         {/* Responsive Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
@@ -203,7 +211,7 @@ const NoImagePlaceholder = () => (
            {
             isAdmin && 
              <button 
-              className="w-full sm:w-auto cursor-pointer group border-2 border-rose-300 text-rose-300 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold  transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="cursor-pointer z-20  w-full sm:w-auto cursor-pointer group border-2 border-rose-300 text-rose-300 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold  transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               onClick={() => setIsNewSet(true)}
             >
               <span className="flex items-center justify-center space-x-2">
@@ -245,16 +253,16 @@ const NoImagePlaceholder = () => (
            :
            <>
                 {/* Responsive Card Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-      {latest.map((item, index) => (
-        <div
-          key={index}
-          className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
-        >
-          {/* Image Container */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-            {item.image ? (
-              <>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+             <FavoritesCard />
+        {latest.map((item, index) => (
+          <div
+            key={index}
+            className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
+          >
+            {/* Image Container */}
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              {item.image ? (
                 <Image
                   src={item.image}
                   alt={item.category}
@@ -262,51 +270,51 @@ const NoImagePlaceholder = () => (
                   unoptimized
                   className="object-cover"
                 />
+              ) : (
+                !loading && <NoImagePlaceholder />
+              )}
 
-                {/* Bottom Bar Without Background */}
-                <div className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-end justify-between gap-2 text-white text-sm z-10">
-                  {/* Left: Category Name + Edit */}
-                  <div className="flex items-end gap-2 font-semibold drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">
+              {/* Bottom Bar - Always Rendered */}
+              <div className="absolute bottom-0 left-0 right-0 px-1 md:px-4 py-3 flex items-end justify-between gap-2 text-white text-sm z-10">
+                {/* Left: Category Name + Edit */}
+                <div className="flex items-end gap-2 font-semibold drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">
                   <div>
-                      <span className='text-lg font-thin'>Album</span>
-                    <span className="text-3xl line-clamp-1">{item.category}</span>
+                    <span className='text-xs sm:text-base md:text-lg font-thin'>Album</span>
+                   <span className="text-sm sm:text-xl md:text-2xl lg:text-3xl line-clamp-1">{item.category.length > 6 ? item.category.slice(0, 6) + '...' : item.category}</span>
                   </div>
-                    {isAdmin && (
-                      <button
-                        onClick={() => handleIsEdit(item.category)}
-                        className="p-1 rounded hover:bg-white/10 transition cursor-pointer"
-                      >
-                        <Edit size={16} />
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Right: View + Delete */}
-                  <div className="flex items-center gap-2">
-                    <Link
-                      href={`cat/${item.category}`}
-                      className="p-1 rounded hover:bg-white/10 text-white transition"
+                  {isAdmin && (
+                    <button
+                      onClick={() => handleIsEdit(item.category)}
+                      className="p-1 rounded hover:bg-white/10 transition cursor-pointer"
                     >
-                      <MoveUpRight size={25} />
-                    </Link>
-                      {isAdmin && (
-                      <button
-                        onClick={() => handleIsDelete(item.category)}
-                        className="cursor-pointer p-1 rounded hover:bg-white/10 text-white transition"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    )}
-                  </div>
+                      <Edit className="w-[15px] h-auto sm:w-6 sm:h-6"/>
+                    </button>
+                  )}
                 </div>
-              </>
-            ) : (
-              !loading && <NoImagePlaceholder /> 
-            )}
+
+                {/* Right: View + Delete */}
+                <div className="flex items-center gap-0 sm:gap-2">
+                  <Link
+                    href={`cat/${item.category}`}
+                    className="p-1 rounded hover:bg-white/10 text-white transition"
+                  >
+                    <MoveUpRight className="w-[17px] h-auto sm:w-6 sm:h-6 md:w-7 md:h-7" />
+                  </Link>
+
+                  {isAdmin && (
+                    <button
+                      onClick={() => handleIsDelete(item.category)}
+                      className="cursor-pointer p-1 rounded hover:bg-white/10 text-white transition"
+                    >
+                      <Trash2 className="w-[17px] h-auto sm:w-6 sm:h-6 md:w-7 md:h-7" />
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
               </>
               }
 

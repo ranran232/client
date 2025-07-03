@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { toast } from "sonner";
 import { useUserStore } from '@/app/store/useUserStore'; 
+import { FavoriteToggle } from "@/components/FavoriteButton";
 
 interface ImageItem {
   _id: string;
@@ -311,8 +312,8 @@ const handleDeleteImg= async()=>{
   </Link>
 </div>
           <div className="text-center">
-       <h1 className="text-xl font-semibold text-rose-500 tracking-wide">
-        {category}
+       <h1 className="text-xs sm:text-xl font-semibold text-rose-500 tracking-wide">
+        {category.length > 10 ? category.slice(0, 10) + '...' : category}
       </h1>
       </div>
         <div className="flex items-center justify-end gap-4">
@@ -465,26 +466,31 @@ const handleDeleteImg= async()=>{
          <div>
     
       {/* Image Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {images.map((item, index) => (
-          <div
-            key={item._id}
-            className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
-            onClick={() => openModal(index)}
-          >
-            <Image
-              fill
-            unoptimized
-              src={item.image}
-              alt={item.category}
-              className="w-full object-cover"
-            />
-            
-            {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-          </div>
-        ))}
+   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {images.map((item, index) => (
+    <div
+      key={item._id}
+      className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
+      onClick={() => openModal(index)}
+    >
+      <Image
+        fill
+        unoptimized
+        src={item.image}
+        alt={item.category}
+        className="w-full object-cover"
+      />
+
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+
+      {/* Heart Icon */}
+      <div className="absolute bottom-2 right-2 p-1 hover:scale-110 transition-transform">
+    <FavoriteToggle image={item.image}/>
       </div>
+    </div>
+  ))}
+</div>
 
       {/* Modal */}
       {isModalOpen && (
@@ -566,6 +572,9 @@ const handleDeleteImg= async()=>{
                   <p className="text-gray-500">Failed to load image</p>
                 </div>
               )}
+                 <div className="absolute bottom-10 right-5 p-1 hover:scale-110 transition-transform">
+    <FavoriteToggle image={currentImageData?.image ?? ""}/>
+      </div>
             </div>
           </div>
         </div>

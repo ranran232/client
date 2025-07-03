@@ -57,6 +57,7 @@ export default function FeaturedCarousel() {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto px-4">
+      <h1 className='text-center text-4xl font-bold md:mt-15 bg-gradient-to-r from-rose-400 to-rose-600 bg-clip-text text-transparent'>Featured Photos</h1>
       <div
         className="relative h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden"
         style={{ perspective: '1500px' }}
@@ -114,10 +115,6 @@ export default function FeaturedCarousel() {
                   }`}
                 />
               ))}
-            </div>
-            <div className="text-sm text-gray-600">
-              <span className="font-semibold text-gray-900">{currentIndex + 1}</span> of{' '}
-              {featuredImages.length}
             </div>
           </div>
         </div>
