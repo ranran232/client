@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useUserStore } from '@/app/store/useUserStore'; 
 
 type Favorite = {
   _id: string;
@@ -7,7 +8,7 @@ type Favorite = {
 
 export const FavoriteToggle = ({ image }:{image:string }) => {
   const [favorites, setFavorites] = useState<string[]>([]); // just the image URLs
-
+const {isAdmin}= useUserStore();
   // Load favorites once
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -61,7 +62,7 @@ export const FavoriteToggle = ({ image }:{image:string }) => {
 
 
   return (
-    <button onClick={(e) => { e.stopPropagation(); handleToggle(); }}>
+    <button disabled={!isAdmin} onClick={(e) => { e.stopPropagation(); handleToggle(); }}>
       {isLiked ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
