@@ -99,7 +99,7 @@ const FavoritesCard = () => {
   }
 
   // Show the first favorite image if available
-  const firstFavorite = favorites[0];
+  const firstFavorite = favorites[favorites.length - 1];
   
   return (
     <div className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
