@@ -174,7 +174,7 @@ export default function FavoritesPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[...Array(8)].map((_, i) => (
               <div key={i} className="animate-pulse">
-                <div className="aspect-[4/5] bg-gray-200 rounded-xl"></div>
+                <div className="aspect-[5/4] bg-gray-200 rounded-xl"></div>
               </div>
             ))}
           </div>
@@ -199,7 +199,7 @@ export default function FavoritesPage() {
               {favorites.map((item, index) => (
                 <div
                   key={item._id}
-                  className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-lg border border-gray-200 group cursor-pointer bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1"
+                  className="relative aspect-[5/4] rounded-xl overflow-hidden shadow-lg border border-gray-200 group cursor-pointer bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1"
                   onClick={() => openModal(index)}
                 >
                   <Image

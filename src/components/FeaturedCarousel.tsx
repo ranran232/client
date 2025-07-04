@@ -57,9 +57,9 @@ export default function FeaturedCarousel() {
 
   return (
     <div className="relative w-full max-w-6xl mx-auto px-4">
-      <h1 className='text-center text-4xl font-bold md:mt-15 bg-gradient-to-r from-rose-400 to-rose-600 bg-clip-text text-transparent'>Featured Photos</h1>
+      <h1 className='text-center text-4xl font-bold mt-[-1rem] sm:mt-15 bg-gradient-to-r from-rose-400 to-rose-600 bg-clip-text text-transparent'>Featured Photos</h1>
       <div
-        className="relative h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden"
+        className="relative h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden "
         style={{ perspective: '1500px' }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -71,7 +71,7 @@ export default function FeaturedCarousel() {
           {getVisibleImages().map((image) => (
             <div
               key={image.id}
-              className="absolute transition-transform transition-opacity duration-700 ease-in-out cursor-pointer"
+              className="absolute transition-transform transition-opacity duration-700 ease-in-out cursor-pointer mt-[-10rem] sm:mt-0"
               style={getImageStyle(image.position)}
               onClick={() =>
                 image.position !== 0 &&
@@ -80,7 +80,7 @@ export default function FeaturedCarousel() {
             >
               <div className="relative w-64 h-80 md:w-72 md:h-96 group">
                 <div
-                  className="w-full h-full bg-cover bg-center rounded-3xl shadow-2xl"
+                  className="w-full h-full bg-cover bg-center rounded-3xl shadow-2xl mt-20"
                   style={{ backgroundImage: `url(${image.src})` }}
                 />
               </div>

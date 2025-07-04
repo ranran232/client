@@ -337,7 +337,7 @@ const handleDeleteImg= async()=>{
               <DialogHeader>
                 <DialogTitle>Upload Images</DialogTitle>
                 <DialogDescription>
-                  Upload multiple images to the {category} category.
+                  Upload multiple images to the  {category.length > 10 ? category.slice(0, 10) + '...' : category}category.
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4">
@@ -429,31 +429,31 @@ const handleDeleteImg= async()=>{
         {isLoading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
                  <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
          <div className="animate-pulse">
-          <div className=" aspect-[4/5] bg-gray-200 rounded mb-4 rounded-xl"></div>
+          <div className=" aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
       </div>
           </div>
         ) : images.length === 0 ? (
@@ -470,7 +470,7 @@ const handleDeleteImg= async()=>{
   {images.map((item, index) => (
     <div
       key={item._id}
-      className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
+      className="relative aspect-[5/4] rounded-xl overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
       onClick={() => openModal(index)}
     >
       <Image
@@ -531,7 +531,7 @@ const handleDeleteImg= async()=>{
                   <img
                     src={currentImageData.image}
                     alt={currentImageData.category || 'Image'}
-                    className="w-full object-contain"
+                     className="w-full max-h-[80vh] object-contain"
                   />
                   
                   {/* Image Info */}
