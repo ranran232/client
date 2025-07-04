@@ -30,7 +30,7 @@ const { setIsAdmin}= useUserStore();
     }
     getAuth();
   
-  }, []);
+  }, [setIsAdmin]);
 
 
   return (

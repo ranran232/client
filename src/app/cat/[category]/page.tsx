@@ -69,7 +69,7 @@ const {isAdmin, setIsAdmin}= useUserStore();
   }
   getAuth();
 
-}, []);
+}, [setIsAdmin]);
 
   // Resolve params and fetch data
     const fetchData = async () => {
