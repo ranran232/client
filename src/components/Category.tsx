@@ -71,7 +71,7 @@ const CardGrid = () => {
         setTimeout(scrollToHash, 100);
     }, []);
 
-    const getLatest = async (page = 1, limit = 8) => {
+    const getLatest = async (page = 1, limit = 7) => {
         try {
             setLoading(true);
             const res = await fetch(`https://expresso-plum.vercel.app/latest?page=${page}&limit=${limit}`);
@@ -96,7 +96,7 @@ const CardGrid = () => {
                     currentPage: 1,
                     totalPages: 1,
                     totalItems: 0,
-                    itemsPerPage: 8,
+                    itemsPerPage: 7,
                     hasNextPage: false,
                     hasPrevPage: false
                 });
