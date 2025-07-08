@@ -45,7 +45,7 @@ export default function GalleryHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm sm:text-base text-gray-700 font-medium">
-          <a href="#albums" className="hover:text-rose-500 transition">Albums</a>
+          <a href="#category" className="hover:text-rose-500 transition">Albums</a>
           <a href="#about" className="hover:text-rose-500 transition">About</a>
         </nav>
 
@@ -119,7 +119,7 @@ export default function GalleryHeader() {
             className="md:hidden bg-white border-t border-rose-100 px-6 pb-4"
           >
             <div className="flex flex-col gap-4 mt-4 text-gray-700 text-sm font-medium">
-              <a href="#albums" onClick={toggleMenu}>Albums</a>
+              <a href="#category" onClick={toggleMenu}>Albums</a>
               <a href="#about" onClick={toggleMenu}>About</a>
 
               {isAdmin ?

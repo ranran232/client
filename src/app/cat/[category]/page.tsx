@@ -463,12 +463,12 @@ export default function Page({ params }: PageProps) {
       </header>
 
       {/* Body */}
-      <div className="p-6">
+      <div className="p-2 sm:p-6">
         {isLoading ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
             {Array.from({ length: 8 }).map((_, index) => (
               <div key={index} className="animate-pulse">
-                <div className="aspect-[5/4] bg-gray-200 rounded mb-4 rounded-xl"></div>
+                <div className="aspect-[5/4] bg-gray-200 rounded mb-4 rounded-sm"></div>
               </div>
             ))}
           </div>
@@ -495,11 +495,11 @@ export default function Page({ params }: PageProps) {
             )}
 
             {/* Image Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
               {images.map((item, index) => (
                 <div
                   key={item._id}
-                  className="relative aspect-[5/4] rounded-xl overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
+                  className="relative aspect-[5/4] rounded-sm overflow-hidden shadow-md border border-gray-200 group cursor-pointer"
                   onClick={() => openModal(index)}
                 >
                   <Image
