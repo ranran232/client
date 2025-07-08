@@ -8,6 +8,7 @@ import GalleryHeader from './GalleryHeader';
 import { toast } from 'sonner';
 import { useSigninStore } from '@/app/store/signInStore';
 import { useUserStore } from '@/app/store/useUserStore';
+import Footer from './Footer';
 
 // SignInModal defined inline
 function SignInModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
@@ -168,6 +169,8 @@ isSignin
 
 
       <CardGrid />
+
+      <Footer/>
     </div>
   );
 }
